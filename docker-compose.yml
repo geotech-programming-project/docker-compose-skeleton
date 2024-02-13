@@ -1,14 +1,14 @@
 version: '3.4'
 services:
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: frontend.Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - ./frontend/web:/usr/share/nginx/html
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: frontend.Dockerfile
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./frontend/web:/usr/share/nginx/html
 
   database:
     build:
@@ -19,14 +19,14 @@ services:
     networks:
       - netw
 
-  api:
-    build:
-      context: ./api
-      dockerfile: api.Dockerfile
-    networks:
-      - netw
-    depends_on:
-      - database
+#  api:
+#    build:
+#      context: ./api
+#      dockerfile: api.Dockerfile
+#    networks:
+#      - netw
+#    depends_on:
+#      - database
 
   etl:
     build:
