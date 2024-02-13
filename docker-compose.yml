@@ -1,0 +1,44 @@
+version: '3.4'
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/web:/usr/share/nginx/html
+
+  database:
+    build:
+      context: ./database
+      dockerfile: database.Dockerfile
+    ports:
+      - "5432:5432"
+    networks:
+      - netw
+
+  api:
+    build:
+      context: ./api
+      dockerfile: api.Dockerfile
+    networks:
+      - netw
+    depends_on:
+      - database
+
+  etl:
+    build:
+      context: ./etl
+      dockerfile: etl.Dockerfile
+    networks:
+      - netw
+    depends_on:
+      - postgres
+    volumes:
+      - ./etl/data:/data/
+
+networks:
+  netw:
+    driver: bridge
