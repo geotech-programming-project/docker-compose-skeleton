@@ -1,11 +1,13 @@
 #!/bin/bash
 
+apt update
 
-sudo apt update
+python3 usr/local/bin/get_googlePlacesData.py 
+
 
 # Function to check if PostgreSQL is ready
 is_postgres_ready() {
-  pg_isready -h postgres -U user -d mydb -q
+  pg_isready -h database -U user -d mydb -q
 }
 
 # Wait for PostgreSQL to be ready
@@ -15,6 +17,29 @@ until is_postgres_ready; do
 done
 
 echo "PostgreSQL is ready now."
+
+
+PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE your_table (
+    \"Name\" VARCHAR,
+    \"Address\" VARCHAR,
+    \"Place_ID\" VARCHAR,
+    \"Phone_Number\" VARCHAR,
+    \"Rating\" FLOAT,
+    \"Website\" VARCHAR,
+    \"Price_Level\" INTEGER,
+    \"Opening_Hours\" VARCHAR,
+    \"Types\" VARCHAR,
+    \"Latitude\" FLOAT,
+    \"Longitude\" FLOAT,
+    \"User_Ratings_Total\" INTEGER,
+    \"Business_Status\" VARCHAR,
+    \"Nearby\" VARCHAR,
+    \"Location\" VARCHAR
+);"
+
+
+PGPASSWORD=passwd psql -h database -U user -d mydb -c "\COPY your_table FROM 'restaurants_nearby_geotech.csv' WITH CSV HEADER DELIMITER ';'"
+
 
 # Run ogr2ogr command
 # ogr2ogr -f "PostgreSQL" PG:"dbname=mydb user=user password=passwd host=postgres" -nlt PROMOTE_TO_MULTI -lco GEOMETRY_NAME=wkb_geometry data/shp_sc/shp_sc.shp
