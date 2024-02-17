@@ -46,7 +46,7 @@ PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE comments_tab
     \"Comment_Text\" TEXT,
     \"Created_At\" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     \"Place_ID\" VARCHAR,
-    FOREIGN KEY (Place_ID) REFERENCES restaurants_table(Place_ID)
+    FOREIGN KEY (\"Place_ID\") REFERENCES restaurants_table(\"Place_ID\")
 );"
 
 
