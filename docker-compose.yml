@@ -35,7 +35,7 @@ services:
     networks:
       - netw
     depends_on:
-      - postgres
+      - database
     volumes:
       - ./etl/data:/data/
 
