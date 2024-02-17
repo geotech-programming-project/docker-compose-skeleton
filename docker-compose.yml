@@ -19,14 +19,14 @@ services:
     networks:
       - netw
 
-#  api:
-#    build:
-#      context: ./api
-#      dockerfile: api.Dockerfile
-#    networks:
-#      - netw
-#    depends_on:
-#      - database
+ api:
+   build:
+     context: ./api
+     dockerfile: api.Dockerfile
+   networks:
+     - netw
+   depends_on:
+     - database
 
   etl:
     build:
