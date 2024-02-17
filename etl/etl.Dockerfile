@@ -5,8 +5,8 @@ RUN apt-get install -y postgresql-client
 RUN apt install -y gdal-bin
 RUN apt-get install -y python3 python3-pip
 
-COPY init/init.sh /usr/local/bin/init.sh
-COPY init/fct_getGooglePlacesData.py /usr/local/bin/fct_getGooglePlacesData.py
+COPY init/init.sh /init.sh
+COPY init/fct_getGooglePlacesData.py /fct_getGooglePlacesData.py
 
 RUN chmod +x /usr/local/bin/init.sh
 
