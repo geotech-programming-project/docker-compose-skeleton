@@ -2,8 +2,9 @@
 
 apt update
 
-python3 usr/local/bin/get_googlePlacesData.py 
+chmod +x fct_getGooglePlacesData.py
 
+python3 fct_getGooglePlacesData.py
 
 # Function to check if PostgreSQL is ready
 is_postgres_ready() {
@@ -27,7 +28,6 @@ PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE your_table (
     \"Rating\" FLOAT,
     \"Website\" VARCHAR,
     \"Price_Level\" INTEGER,
-    \"Opening_Hours\" VARCHAR,
     \"Types\" VARCHAR,
     \"Latitude\" FLOAT,
     \"Longitude\" FLOAT,
