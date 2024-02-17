@@ -40,24 +40,13 @@ PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE restaurants_
 
 PGPASSWORD=passwd psql -h database -U user -d mydb -c "\COPY restaurants_table FROM 'restaurants_nearby_geotech.csv' WITH CSV HEADER DELIMITER ';'"
 
-PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE user_comments (
-    \"comment_id\" SERIAL PRIMARY KEY,
-    \"user_id\" INTEGER,
-    \"restaurant_id\" INTEGER,
-    \"comment_text\" TEXT,
-    \"created_at\" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- Add other columns as needed
-    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
-    CONSTRAINT fk_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurants_table(restaurant_id)
-);"
-
 PGPASSWORD=passwd psql -h database -U user -d mydb -c "CREATE TABLE comments_table (
-    \"comment_id\" SERIAL PRIMARY KEY,
-    \"user_id\" INTEGER,
-    \"comment_text\" TEXT,
-    \"created_at\" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    \"place_id\" VARCHAR,
-    FOREIGN KEY (place_id) REFERENCES restaurants_table(Place_ID)
+    \"Comment_ID\" SERIAL PRIMARY KEY,
+    \"User_ID\" INTEGER,
+    \"Comment_Text\" TEXT,
+    \"Created_At\" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    \"Place_ID\" VARCHAR,
+    FOREIGN KEY (Place_ID) REFERENCES restaurants_table(Place_ID)
 );"
 
 
