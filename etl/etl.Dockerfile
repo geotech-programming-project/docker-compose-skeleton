@@ -6,7 +6,7 @@ RUN apt install -y gdal-bin
 RUN apt-get install -y python3 python3-pip
 
 COPY init/init.sh /usr/local/bin/init.sh
-COPY init/get_googlePlacesData.py /usr/local/bin/get_googlePlacesData.py
+COPY init/fct_getGooglePlacesData.py /usr/local/bin/fct_getGooglePlacesData.py
 
 RUN chmod +x /usr/local/bin/init.sh
 
